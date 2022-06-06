@@ -10,8 +10,11 @@ export default function Layout({ children, ...props }) {
             <MyNav />
             <Container fluid className='mx-4'>
                 <Row>
-                    <Col lg='3'>
+                    <Col lg='3' style={{ position: "fixed"}}>
                         <LeftSide />
+                    </Col>
+                    <Col lg='3' >
+                        
                     </Col>
                     <Col>
                         <Row>

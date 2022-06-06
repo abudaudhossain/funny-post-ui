@@ -1,0 +1,7 @@
+.post-card{
+    display: flex;
+    padding: 16px;
+    text-align: justify;
+    align-items: center;
+    margin: 20px 0;
+}

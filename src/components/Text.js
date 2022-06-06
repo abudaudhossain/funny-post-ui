@@ -3,7 +3,7 @@ import '../assets/styles/text.css'
 
 export default function Text({children, style = {}, preset = ''}) {
     
-    if(preset ==="title"){
+    if(preset ==="title"){ 
        return <h1 className='bold title' style={style}>{children}</h1>
     }
     else if(preset === "sub-title"){

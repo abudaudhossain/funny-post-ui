@@ -1,7 +1,7 @@
 export const colors= {
     body: '#ffffff',
     primary: '#000000',
-    secondary: '#666666',
+    secondary: '#666666' ,
     bgBtn: '#1eafed',
     info: '#bfbfbf',
     
