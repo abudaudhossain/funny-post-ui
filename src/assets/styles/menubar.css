@@ -1,0 +1,8 @@
+.menu{
+    display: flex;
+    flex-direction: column;
+}
+.active{
+    color: #1eafed;
+    text-decoration: underline;
+}

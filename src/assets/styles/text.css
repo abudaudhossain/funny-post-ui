@@ -1,0 +1,23 @@
+.bold {
+    color: #000;
+    font-family: Lora, Arial, serif;
+    font-weight: 400;
+}
+
+.title {
+    font-size: 30px;
+    line-height: 45px
+}
+
+.sub-title {
+    font-size: 18px;
+    line-height: 45px;
+}
+
+.text{
+    color: #000;
+    font-family: Poppins,Arial, serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+}
