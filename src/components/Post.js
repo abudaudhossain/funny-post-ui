@@ -16,8 +16,8 @@ export default function Post() {
                 <Text preset='title'>This is thitle</Text>
                 <div style={{color:"#bfbfbf", fontFamily:"Poppins, Arial, serif"}} className="my-2">
                     <span className='me-2'><i className="fa-solid fa-calendar-days p-1"></i>calendar</span>
-                    <span className='me-2'><i class="fa-solid fa-folder p-1"></i>Travel</span>
-                    <span className='me-2'><i class="fa-solid fa-comment p-1"></i>Comment(10)</span>
+                    <span className='me-2'><i className="fa-solid fa-folder p-1"></i>Travel</span>
+                    <span className='me-2'><i className="fa-solid fa-comment p-1"></i>Comment(10)</span>
                 </div>
                 <Text> Notice the use of %PUBLIC_URL% in the tags above.
                     It will be replaced with the URL of the `public` folder during the build.

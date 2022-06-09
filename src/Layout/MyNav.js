@@ -5,6 +5,7 @@ import LeftSide from './LeftSide';
 
 import '../assets/styles/myNav.css'
 import { colors } from '../theme/colors';
+import { Link } from 'react-router-dom';
 
 export default function MyNav() {
     const [show, setShow] = useState(false);
@@ -15,15 +16,20 @@ export default function MyNav() {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Button variant="primary" onClick={handleShow} style={{display:'none'}}>
+                    <Button variant="primary" onClick={handleShow} style={{ display: 'none' }}>
                         Launch
                     </Button>
-                    <Navbar.Brand href="#home">
-                        <span className='logo'>Funnny <span style={{color: colors.bgBtn}}>Post</span></span>
+                    <Navbar.Brand href="/">
+                        <span className='logo'>Funnny <span style={{ color: colors.bgBtn }}>Post</span></span>
                     </Navbar.Brand>
                     <Nav className="ms-auto">
-                        <MyButton >Sing In</MyButton>
-                        <MyButton >Sing Up</MyButton>
+                        <Link to="/signIn">
+
+                            <MyButton >Sign In</MyButton>
+                        </Link>
+                        <Link to="/signUp">
+                            <MyButton >Sign Up</MyButton>
+                        </Link>
                     </Nav>
                 </Container>
 

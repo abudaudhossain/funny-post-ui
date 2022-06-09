@@ -1,0 +1,10 @@
+.category{
+    display: flex;
+    color: #bfbfbf;
+    font-family: Poppins, Arial, serif ;
+    border-bottom: 1px #bfbfbf solid;
+    width: 90%;
+    justify-content: space-between;
+    padding-bottom: 1px !important;
+    text-transform:capitalize ;
+}

@@ -1,0 +1,11 @@
+.article{
+    display: flex;
+    text-align: justify;
+    align-items: center;
+    padding-right: 18px;
+    padding-top: 10px;
+}
+.article:hover .sub-title{
+    color: #1eafed;
+   
+}
