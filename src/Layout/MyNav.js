@@ -6,9 +6,12 @@ import LeftSide from './LeftSide';
 import '../assets/styles/myNav.css'
 import { colors } from '../theme/colors';
 import { Link } from 'react-router-dom';
+import UseUser from '../hooks/UseUser';
+import Text from '../components/Text';
 
 export default function MyNav() {
     const [show, setShow] = useState(false);
+    const { user } = UseUser();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -22,15 +25,21 @@ export default function MyNav() {
                     <Navbar.Brand href="/">
                         <span className='logo'>Funnny <span style={{ color: colors.bgBtn }}>Post</span></span>
                     </Navbar.Brand>
-                    <Nav className="ms-auto">
-                        <Link to="/signIn">
+                    {
+                        user?.sessionStatus === 'Active' ? <Nav className="ms-auto " style={{alignItems: "center"}}>
+                            <Text style={{ color: '#fff' }}>{user?.name}</Text>
+                            <MyButton >Log Out</MyButton>
+                        </Nav>
+                            : <Nav className="ms-auto">
+                                <Link to="/signIn">
+                                    <MyButton >Sign In</MyButton>
+                                </Link>
+                                <Link to="/signUp">
+                                    <MyButton >Sign Up</MyButton>
+                                </Link>
+                            </Nav>
+                    }
 
-                            <MyButton >Sign In</MyButton>
-                        </Link>
-                        <Link to="/signUp">
-                            <MyButton >Sign Up</MyButton>
-                        </Link>
-                    </Nav>
                 </Container>
 
                 <Offcanvas show={show} onHide={handleClose}>

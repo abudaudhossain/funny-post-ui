@@ -3,13 +3,13 @@ import { Col, Container, Row } from 'react-bootstrap'
 import LeftSide from './LeftSide'
 import MyNav from './MyNav'
 import RightSide from './RightSide'
-import useAuth from '../utils/userAuth'
+import UseUser from '../hooks/UseUser'
 
 export default function Layout({ children, ...props }) {
-    const { user, setUser } = useAuth();
+    const { user, setUser } = UseUser();
 
     useEffect(() => {
-        setUser(localStorage.getItem('userInfo'));
+        setUser(JSON.parse(localStorage.getItem('userInfo')));
     }, [])
     console.log(user)
 

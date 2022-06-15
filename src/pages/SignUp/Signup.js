@@ -3,20 +3,19 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Spinner } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import ServerInfo from '../../utils/ServerInfo';
-import Text from '../../components/Text'
+// import Text from '../../components/Text'
 
 import "../../assets/styles/signup.css"
-import userContext from '../../context/user/userContext';
+import UseUser from '../../hooks/UseUser';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Signup = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
-    // const [user, setUser] = useState({});
-    const authUser = useContext(userContext);
-    const { user, setUser } = authUser;
-
+    const { user, setUser } = UseUser();
+    const navigate = useNavigate();
 
     const { register, handleSubmit } = useForm();
 
@@ -55,11 +54,10 @@ const Signup = () => {
     };
 
     useEffect(() => {
-        const user1 = localStorage.getItem('userInfo');
-        setUser(user1);
-        console.log(user);
-      }, [user])
-
+        if (user?.sessionStatus === 'Active') {
+            navigate('/');
+        }
+    }, [user])
 
     return (
         <section className="signup">
@@ -85,11 +83,11 @@ const Signup = () => {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="pass"><i className="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password" {...register("password", { required: true })} />
+                                <input type="password" name="pass" id="pass" placeholder="Password" {...register("password", { required: true })} autoComplete="on" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="re-pass"><i className="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" {...register("rePass", { required: true })} />
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" {...register("rePass", { required: true })} autoComplete="on" />
                             </div>
                             <div className="form-group form-button">
                                 <input type="submit" name="signup" id="signup" className="form-submit" value="Register" />

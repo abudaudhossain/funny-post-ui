@@ -20,12 +20,12 @@ export default function Menubar() {
                     isActive ? activeStyle : undefined
                 }
             >My Post</NavLink>
-            <NavLink to='/fashion'
+            <NavLink to='/post/fashion'
                 style={({ isActive }) =>
                     isActive ? activeStyle : undefined
                 }
             >Fashion</NavLink>
-            <NavLink to='/travel'
+            <NavLink to='/post/travel'
                 style={({ isActive }) =>
                     isActive ? activeStyle : undefined
                 }

@@ -12,3 +12,8 @@ a{
   text-decoration: none;
   padding: 5px;
 }
+
+p{
+  margin: 0;
+  padding: 0;
+}
