@@ -1,13 +1,13 @@
-import { Children, useState } from "react";
+import {useState } from "react";
 import postContext from "./postContext"
 
 const PostContext = postContext;
 
-const PostState = ({Children}) =>{
+const PostState = ({children}) =>{
 const [posts, setPosts] = useState({})
     return (
         <PostContext.Provider value={{posts, setPosts}}>
-            {Children}
+            {children}
         </PostContext.Provider>
     )
 }

@@ -14,26 +14,29 @@ import MyAccount from './pages/MyAccount/MyAccount';
 import CategoryPost from './pages/CategoryPost/CategoryPost';
 import About from './pages/About/About';
 import PrivateOutlet from './components/PrivateOutlet';
+import PostState from './context/post/postState';
 
 function App() {
 
   return (
     <UserState>
-      <BrowserRouter>
-        <Layout >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Details" element={<Details />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path='/post/:category' element={<CategoryPost />} />
-            <Route path='about' element={<About />} />
-            <Route path='/' element={<PrivateOutlet />} >
-              <Route path='/myPost' element={<MyAccount />} />
-            </Route>
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <PostState>
+        <BrowserRouter>
+          <Layout >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/Details" element={<Details />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path='/post/:category' element={<CategoryPost />} />
+              <Route path='about' element={<About />} />
+              <Route path='/' element={<PrivateOutlet />} >
+                <Route path='/myPost' element={<MyAccount />} />
+              </Route>
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </PostState>
     </UserState>
 
   );
