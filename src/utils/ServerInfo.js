@@ -5,5 +5,6 @@ module.exports = {
             'Content-type': "Application/json",
             'devicetoken': '1234567890'
         }
-    }
+    },
+    
 }

@@ -4,12 +4,18 @@ import LeftSide from './LeftSide'
 import MyNav from './MyNav'
 import RightSide from './RightSide'
 import UseUser from '../hooks/UseUser'
+import UsePost from '../hooks/UsePost'
+import axios from 'axios'
+import ServerInfo from '../utils/ServerInfo'
 
 export default function Layout({ children, ...props }) {
     const { user, setUser } = UseUser();
+    // const {posts, setPosts} = UsePost();
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('userInfo')));
+
+        // axios.get(`${ServerInfo.baseUrl}/login`, ServerInfo.config)
     }, [])
     console.log(user)
 
