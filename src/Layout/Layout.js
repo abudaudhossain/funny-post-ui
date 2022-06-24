@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Col, Container, Row, Spinner } from 'react-bootstrap'
 import LeftSide from './LeftSide'
 import MyNav from './MyNav'
 import RightSide from './RightSide'
@@ -10,12 +10,31 @@ import ServerInfo from '../utils/ServerInfo'
 
 export default function Layout({ children, ...props }) {
     const { user, setUser } = UseUser();
-    // const {posts, setPosts} = UsePost();
+    const { posts, setPosts } = UsePost();
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('userInfo')));
-
-        // axios.get(`${ServerInfo.baseUrl}/login`, ServerInfo.config)
+        axios.get(`${ServerInfo.baseUrl}/allPost`, ServerInfo.config)
+            .then(response => {
+                console.log(response.data)
+                const { type, message, data } = response.data
+                if (type == 'error') {
+                    setError(message)
+                    setLoading(false)
+                }
+                else {
+                    setPosts(data)
+                    setError("")
+                    setLoading(false)
+                }
+            })
+            .catch(error => {
+                setError(error.message);
+                console.error('There was an error!', error);
+                setLoading(false)
+            });
     }, [])
     console.log(user)
 
@@ -32,7 +51,15 @@ export default function Layout({ children, ...props }) {
                     </Col>
                     <Col>
                         <Row>
-                            <Col>{children}</Col>
+                            <Col>
+                                {
+
+                                    loading ? (
+                                        <Spinner animation="border" variant="secondary" style={{ display: 'flex', margin: "auto", width: '100px', height: "100px" }} />
+                                    ) : children
+
+
+                                }</Col>
                             <Col lg="4">
                                 <RightSide />
                             </Col>

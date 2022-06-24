@@ -4,7 +4,7 @@ import postContext from "./postContext"
 const PostContext = postContext;
 
 const PostState = ({children}) =>{
-const [posts, setPosts] = useState({})
+const [posts, setPosts] = useState()
     return (
         <PostContext.Provider value={{posts, setPosts}}>
             {children}

@@ -9,7 +9,7 @@ import { colors } from '../theme/colors'
 export default function Post({post}) {
     let imgUrl = img;
     console.log(post.image)
-    if(post.image){
+    if(post?.image){
         imgUrl = post.image;
     }
     return (
@@ -35,7 +35,7 @@ export default function Post({post}) {
                         post.description.slice(0, 200)
                     }...
                 </Text>
-                <Link to="/details" style={{color:colors.bgBtn}}>Read more</Link>
+                <Link to={`/details/${post.token}`} style={{color:colors.bgBtn}}>Read more</Link>
             </div>
         </div>
     )

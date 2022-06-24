@@ -36,6 +36,7 @@ function App() {
                 <Route path='/myPost' element={<MyAccount />} />
                 <Route path='/createPost' element={<CreatePost />} />
                 <Route path='/postUpdate/:postToken' element={<PostUpdate />} />
+                <Route path="/Details/:postToken" element={<Details />} />
               </Route>
             </Routes>
           </Layout>
