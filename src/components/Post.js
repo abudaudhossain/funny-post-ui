@@ -7,11 +7,15 @@ import { Link } from 'react-router-dom'
 import { colors } from '../theme/colors'
 
 export default function Post({post}) {
-    console.log(post)
+    let imgUrl = img;
+    console.log(post.image)
+    if(post.image){
+        imgUrl = post.image;
+    }
     return (
         <div className='post-card'>
             <div className='img-container' style={{ margin: '10px' }}>
-                <img src={img} style={{ width: "130px", height: "130px", borderRadius: 50 }} />
+                <img src={imgUrl} style={{ width: "200px", height: "200px", borderRadius: "50%" }} />
             </div>
             <div className='px-4'>
                 <Text preset='title'>
@@ -28,8 +32,8 @@ export default function Post({post}) {
                 </div>
                 <Text> 
                     {
-                        post.description
-                    }
+                        post.description.slice(0, 200)
+                    }...
                 </Text>
                 <Link to="/details" style={{color:colors.bgBtn}}>Read more</Link>
             </div>

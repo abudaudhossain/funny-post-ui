@@ -15,6 +15,8 @@ import CategoryPost from './pages/CategoryPost/CategoryPost';
 import About from './pages/About/About';
 import PrivateOutlet from './components/PrivateOutlet';
 import PostState from './context/post/postState';
+import CreatePost from './pages/CreatePost/CreatePost';
+import PostUpdate from './pages/Update/PostUpdate';
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
               <Route path='about' element={<About />} />
               <Route path='/' element={<PrivateOutlet />} >
                 <Route path='/myPost' element={<MyAccount />} />
+                <Route path='/createPost' element={<CreatePost />} />
+                <Route path='/postUpdate/:postToken' element={<PostUpdate />} />
               </Route>
             </Routes>
           </Layout>

@@ -18,7 +18,7 @@ const styles = {
 
 export default function MyButton({ children }) {
     return (
-        <button style={styles.btn}>{children}</button>
+        <button style={styles.btn}>{children}</button> 
     )
 }
 
