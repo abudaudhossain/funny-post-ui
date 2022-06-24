@@ -17,41 +17,42 @@ export default function PostUpdate() {
 
     console.log(postToken)
 
-    const onSubmit = data => {
-        // setLoading(true)
-        console.log(data)
-        // axios.post(`${ServerInfo.baseUrl}/login`, data, ServerInfo.config)
-        //     .then(response => {
-        //         console.log(response.data)
-        //         const { type, message, data } = response.data
-        //         if (type == 'error') {
-        //             setError(message)
-        //             setLoading(false)
-        //         }
-        //         else {
-        //             setUser(data)
-        //             setError("")
 
-
-        //             setLoading(false)
-        //         }
-        //     })
-        //     .catch(error => {
-        //         setError(error.message);
-        //         console.error('There was an error!', error);
-        //         setLoading(false)
-        //     });
-
-
-    };
     const config = {
         headers: {
             'Content-type': "Application/json",
             'devicetoken': '1234567890',
-            'authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVG9rZW4iOiI2MjgyN2hjSnVuZGVmaW5lZGZBQ0NzTlRXVTE3MDM3Iiwic2Vzc2lvblRva2VuIjoiNTA1NTB3WENNUUFVVEhTZXNMYW5keDYyNTA1IiwiaWF0IjoxNjU1ODM0NTAyLCJleHAiOjE2NTg0MjY1MDJ9.4kp97Gjkk3lwaqNjxgaTFz0lm8wln3GNcGg3sJFUdQ0`
-            // 'authorization': `Bearer ${user.jwtToken}`
+            'authorization': `Bearer ${user.jwtToken}`
         }
     }
+
+    const onSubmit = data => {
+        setLoading(true)
+        data.token = post.token;
+        console.log(data)
+        axios.post(`${ServerInfo.baseUrl}/updatePost`, data, config)
+            .then(response => {
+                console.log(response.data)
+                const { type, message, data } = response.data
+                if (type == 'error') {
+                    setError(message)
+                    setLoading(false)
+                }
+                else {
+                    setError("")
+                    setLoading(false)
+                    navigate('/myPost')
+                }
+            })
+            .catch(error => {
+                setError(error.message);
+                console.error('There was an error!', error);
+                setLoading(false)
+            });
+
+
+    };
+
     useEffect(() => {
         axios.get(`${ServerInfo.baseUrl}/post/${postToken}`, config)
             .then(response => {
@@ -62,7 +63,7 @@ export default function PostUpdate() {
                     setLoading(false)
                 }
                 else {
-                    setPost(data)
+                    setPost(data[0])
                     setError("")
                     setLoading(false)
                 }
@@ -73,69 +74,78 @@ export default function PostUpdate() {
                 setLoading(false)
             });
     }, [])
-    console.log(post)
+    console.log()
     return (
         <section>
 
             {
 
-                loading && <Spinner animation="border" variant="secondary" style={{ display: 'flex', margin: "auto", width: '100px', height: "100px" }} />
+                loading ? (<Spinner animation="border" variant="secondary" style={{ display: 'flex', margin: "auto", width: '100px', height: "100px" }} />) : (
+                    <>
+                        <h2 className="form-title">Update Funny Post</h2>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInput" placeholder="Title"
+                                    {
+                                    ...register("title",
+                                        { required: true })
+                                    }
+                                    defaultValue={post.title}
+                                />
+                                <label htmlFor="floatingInput">Post Title</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInput" placeholder="Category"
+                                    {
+                                    ...register("category",
+                                        { required: true })
+                                    }
+                                    defaultValue={post.category}
+                                />
+                                <label htmlFor="floatingInput">Post Category</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInput" placeholder="Tags"
+                                    {
+                                    ...register("tags",
+                                        { required: true })
+                                    }
+                                    defaultValue={post.tags}
+                                />
+                                <label htmlFor="floatingInput">Add Tags</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInput" placeholder="Enter Image URL"
+                                    {
+                                    ...register("image",
+                                        { required: true })
+                                    }
+                                    defaultValue={post.image}
+                                />
+                                <label htmlFor="floatingInput">Image URL</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: "100px" }}
+                                    {
+                                    ...register("description",
+                                        { required: true })
+                                    }
+                                    defaultValue={post.description}
+                                />
+                                <label htmlFor="floatingTextarea2">Comments</label>
+                            </div>
+
+
+                            <div className="form-group form-button">
+                                <input type="submit" name="update_post" id="update_post" className="form-submit" value="UpdatePost" />
+                            </div>
+                        </form>
+                    </>
+                )
 
             }
 
-            <h2 className="form-title">Update Funny Post</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput" placeholder="Title"
-                        {
-                        ...register("title",
-                            { required: true })
-                        }
-                    />
-                    <label htmlFor="floatingInput">Post Title</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput" placeholder="Category"
-                        {
-                        ...register("category",
-                            { required: true })
-                        }
-                    />
-                    <label htmlFor="floatingInput">Post Category</label>
-                </div>
-                <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="floatingInput" placeholder="Tags"
-                        {
-                        ...register("tags",
-                            { required: true })
-                        }
-                    />
-                    <label htmlFor="floatingInput">Add Tags</label>
-                </div>
 
-                <div className="form-floating mb-3">
-                    <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: "100px" }}
-                        {
-                        ...register("description",
-                            { required: true })
-                        }
-                    />
-                    <label htmlFor="floatingTextarea2">Comments</label>
-                </div>
-
-                <div className="mb-3">
-                    <input type="file" className="form-control" id="floatingInput" placeholder="image"
-                        {
-                        ...register("image",
-                            { required: true })
-                        }
-                    />
-
-                </div>
-                <div className="form-group form-button">
-                    <input type="submit" name="create_post" id="create_post" className="form-submit" value="Create New Post" />
-                </div>
-            </form>
             <h2>{error}</h2>
 
         </section>

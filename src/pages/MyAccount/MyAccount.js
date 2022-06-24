@@ -11,7 +11,7 @@ import ServerInfo from '../../utils/ServerInfo';
 
 export default function MyAccount() {
   const { user } = UseUser();
-
+  const navigate = useNavigate()
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
@@ -77,7 +77,10 @@ export default function MyAccount() {
               posts.map((post, index) => (
                 <div>
                   <Post key={index} post={post} />
-                  <MyButton>Update</MyButton>
+                  <Link to={`/postUpdate/${post.token}`}>
+
+                    <MyButton >Update</MyButton>
+                  </Link>
                 </div>
               ))
             )
